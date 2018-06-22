@@ -1,21 +1,24 @@
 // 1. Password Check - Binary to String
-//   https://www.codewars.com/kata/password-check-binary-to-string 
+  // https://www.codewars.com/kata/password-check-binary-to-string 
 
 function decodePass( passArr, bin ){
   // Code here
-  var binArr = []
-      binArr =  bin.split(" ");
+  var binArr = bin.split(" ");
   var result = [];
   for (var i=0; i < binArr.length; i++){
     result.push(String.fromCharCode(parseInt(binArr[i],2)));
   };
   var pass = result.join("");
-  return passArr.includes(pass) ? result.join("") : false;
+  return passArr.includes(pass) ? pass : false;
 };
+console.log(decodePass('password123', 'admin1'));
 console.log(decodePass('password321', 'admin'));
 
 
 // 2. Move Zeroes 
+
+
+
 //  Given an array nums, 
 // write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 
@@ -55,23 +58,36 @@ console.log(moveZeroes([0, 1, 0, 3, 12]));
 // 3. Maximum Product
 //   https://www.codewars.com/kata/maximum-product
 
+// 주어진 정수 배열을 사용하여 배열에서 인접한 2개의 숫자를 곱하여 얻은 최대 값을 찾습니다.
+
+function adjacentElementsProduct(array) {
+  // max product
+  var Arr = [];
+  for(var i = 0; i < array.length -1; i++){
+    Arr.push(array[i] * array[i+1]);
+  }
+  return Math.max(...Arr);
+};
+console.log(adjacentElementsProduct([1,2,3]));
+
+
+
+
+// 별도 문제.
 /**
  * @param {string} word
  * @return {boolean}
  */
 var detectCapitalUse = function(word) {
-   var myWord = /[A-Z]/g;
-   if(word = myWord.test(word)){
-     return true;
-   } else {
-     return false;
-   }
+   var myWord = /^([A-Z]+)([a-z]*)$/g
+  //  var myWord2 = /^([a-z]*)$/g
+   if(myWord.test(word)) {return true;}
+  //  if(myWord2.test(word)) {return true;}
+   return false;
 };
 console.log(detectCapitalUse('USA'));
 console.log(detectCapitalUse('usa'));
-
-
-
+console.log(detectCapitalUse('UsA'));  
 
 
 
