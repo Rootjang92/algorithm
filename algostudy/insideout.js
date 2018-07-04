@@ -6,61 +6,44 @@
 // An example should clarify:
 // 'taxi' would become 'atix' 'taxis' would become 'atxsi'
 
-function insideOut(x){
-  let insidesplit = x.split(' ');
-  let resArr = [];
+// function insideOut(x){
+//   let insideArr = x.split(' ');
+//   let resArr = [];
 
-  insidesplit.forEach(i => {
-    if (i.length > 3) {
-      resArr.push(inString(i))
-    } else {
-      resArr.push(i);
-    }
-  });
+//   insideArr.forEach(i => {
+//     if (i.length > 3) {
+//       resArr.push(inString(i))
+//     } else {
+//       resArr.push(i);
+//     }
+//   });
 
-  function inString(str) {
-    let splitstr = str.split('');
-    let strlen = Math.floor(str.length / 2);
-    for(let i=0; i < str.length; i++) {
-      splitstr[i] = str[strlen - 1 - i];
-      splitstr[str.length - 1 -i] = str[str.length - strlen + i];
-    }
-    return splitstr.join('');
-  } 
-  return resArr.join(' ');
+//   function inString(str) {
+//     let splitstr = str.split('');
+//     let strlen = Math.floor(str.length / 2);
+//     for(let i=0; i < strlen; i++) {
+//       splitstr[i] = str[strlen - 1 - i];
+//       splitstr[str.length - 1 - i] = str[str.length - strlen + i];
+//     }
+//     return splitstr.join('');
+//   } 
+//   return resArr.join(' ');
+// }
+
+// console.log(insideOut('what time are we climbing up the volcano'));
+
+
+function insideOut(x) {
+  let res = s => [...s].reverse().join(''); // s배열 분배해서 리버스 후 조인.
+  let flip = w => {
+    let l = w.length / 2 | 0, r = w.length - l // 변수 l은 w.length / 2 이거나 0이고 r은 w의 배열길이에 - l
+    return res(w.slice(0,l)) + w.slice(l, r) + res(w.slice(r)) // 변수 res 일때 매개변수 w를 l부터 r까지 슬라이스 + 변수 res의 w를 r번째 까지 슬라이스.
+  }
+  return x.split(' ').map(flip).join(' ');  // 매개변수 x를 split한 걸 다시 조인해서 새 배열에 반영.
 }
-
 console.log(insideOut('what time are we climbing up the volcano'));
 
 
 
 
-
-
-// function insideOut(x){
-//   // let inside = '';
-//   let insidesplit = x.split(' '); // ex) taxi -> 'ta' -> 'at'  , 'xi' -> 'ix'
-//   let insideArr = []; 
-
-//   insideArr.forEach(i => {
-//     if (i.length > 3) {
-//       insiderArr.push(inString(i)); 
-//     } else {
-//       insideArr.push(i);
-//     }
-//   });
-
-//   function inString(str) {
-//     let inS = str.split('');
-//     let strlen = Math.floor(str.length / 2); // if str.length 4 = 2, 5 = 2.
-//       for(let j=0; j < str.length; j++) {
-//         inS[j] = str[strlen -1 - j]; // ex) taxi -> str[0] = t -> str[strlen -1 + i] = a 
-//         inS[str.length -1 -j] = str[str.length - strlen + j];
-//       }
-//     return inS.join('');
-//     }
-//   return insideArr.join(' ');
-// };
-
-// console.log(insideOut('what time are we climbing up the volcano'));
 
