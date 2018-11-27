@@ -1,11 +1,11 @@
 
-// International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, 
+// International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes,
 // as follows: "a" maps to ".-", "b" maps to "-...", "c" maps to "-.-.", and so on.
 
 // For convenience, the full table for the 26 letters of the English alphabet is given below:
 
-// Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. 
-// For example, "cab" can be written as "-.-.-....-", (which is the concatenation "-.-." + "-..." + ".-"). 
+// Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter.
+// For example, "cab" can be written as "-.-.-....-", (which is the concatenation "-.-." + "-..." + ".-").
 // We'll call such a concatenation, the transformation of a word.
 
 // Return the number of different transformations among all words we have.
@@ -16,16 +16,16 @@ let uniqueMorseRepresentations = function(words) {
   const stringMorse = [".-","-...","-.-.","-..",".","..-.","--.",
   "....","..",".---","-.-",".-..","--","-.",
   "---",".--.","--.-",".-.","...","-","..-",
-  "...-",".--","-..-","-.--","--.."]; 
-  let newMorse = new Map(stringMorse.map((code, index) => [code, [letters.index]]));
-  let transForm = new Set();
-  
+  "...-",".--","-..-","-.--","--.."];
+  let newMorse = new Map(stringMorse.map((code, index) => [code, [letters.index]])); // 삽입 순서대로 요소 순회해서 배열 반환.
+  let transForm = new Set(); // 유일한 값 저장. -> 비어있는 상태.
+
   words.forEach(word => {
     transForm.add(word.split('').map( l => newMorse.get(l)).join(''));
   });
   return transForm.size;
 };
-console.log(uniqueMorseRepresentations(["gin", "zen", "gig", "msg"]));
+console.log(uniqueMorseRepresentations(["gin", "zen", "gig", "msg"])); // 2
 
 
 

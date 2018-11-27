@@ -19,8 +19,9 @@ function rotateString(A, B) {
   for(let i = 0; i < l; i++) {
     const c = A[i];
     if(c !== t) {
-      continue;
+      continue; // resolve
     }
+    // console.log(i);
     const str = A.substr(i) + A.substr(0, i); // A의 i번째 추출 + 0부터 i번째 까지 추출.
     if(str === B) { // str이 B와 같으면.
       return true;
