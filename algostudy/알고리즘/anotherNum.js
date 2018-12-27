@@ -14,7 +14,20 @@
 // 순서유지
 
 function solution(arr) {
-  return arr.filter((n,i) => n !== arr[i + 1]); // n과 arr[i+1] 번째가 같지 않은 숫자만 리턴.
+  return arr.filter((n,i) => n !==arr[i + 1]);
+}
+
+console.log(solution([1,1,3,3,0,1,1]));
+
+
+
+function solution2(arr) {
+  var answer = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    if(arr[i] !== arr[i + 1]) answer.push(arr[i]);
+  }
+  return answer;
 }
 
 console.log(solution([1,1,3,3,0,1,1]));
