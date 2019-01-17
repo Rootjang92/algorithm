@@ -15,3 +15,18 @@ function solution(arr, divisor) {
 
 console.log(solution([5,10,6,7], 5)); // [ 5, 10 ]
 console.log(solution([2,4,7,8], 3)); // [ -1 ]
+
+
+
+// other solution
+
+
+function solution2(arr, divisor) {
+  var answer = [];
+  arr.map((o) => {
+    o % divisor === 0 && answer.push(o);
+  });
+  return answer.length ? answer.sort((a,b) => a - b) : [-1];
+}
+
+console.log(solution2([5,10,6,7], 5)); // [ 5, 10 ]
