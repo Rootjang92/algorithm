@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form name="inputOutputForm">
+    <div>
+      원반의 개수:<input type="text" name="saucer" size="5" />개
+      <input type="button" name="play" value="실행하기" onClick="doHanoi()"/>
+    </div>
+    <hr>
+    <div>
+      실행결과
+    </div>
+    <div>
+      <textarea name="motion" rows="20" cols="50" spellcheck="false"></textarea>
+    </div>
+  </form>
+  <script>
+    function doHanoi() {
+      var inputOutputForm = document.forms.inputOutputForm;
+      inputOutputForm.motion.value = '';
+      var saucer = parseInt(inputOutputForm.saucer.value);
+      inputOutputForm.play.disabled = true;
+      hanoi(saucer, "A", "B", "C");
+      inputOutputForm.play.disabled = false;
+    }
+
+    function hanoi(saucer, from, to, rest) {
+      if (saucer === 0) {
+        return ;
+      }
+      hanoi(saucer - 1, from, rest, to);
+      printMotion(saucer, from, to);
+      hanoi(saucer - 1, rest, to, from);
+    }
+
+    function printMotion(saucer, from, to) {
+      document.forms.inputOutputForm.motion.value +=
+      "말뚝 " + from + " 원반" + saucer + "을(를), 말뚝 " + to + "로 이동한다.\n";
+    }
+  </script>
+</body>
+</html>
