@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form name="inputForm">
+    <div>
+      반복횟수＝<input name="n" type="text" size="10"/></br>
+      <input type="button" name="calcButton" value="계산하기" onClick="calc()"/>
+    </div>
+  </form>
+  <form name="outputForm">
+    <div>
+      계산 결과→<input name="result" type="text" size="30"/>
+    </div>
+  </form>
+  <script>
+    function calc() {
+      var inputForm = document.forms.inputForm;
+      var n = parseInt(inputForm.n.value);
+      var p = 0;
+      var i = 0;
+      inputForm.calcButton.disabled = true;
+      while (i <= n) {
+        if (i % 2 == 0) {
+          p = p + (1 / (2 * i + 1));
+        } else {
+          p = p - (1 / (2 * i + 1));
+        }
+        i = i + 1;
+      }
+      outputForm.result.value = p * 4;
+      inputForm.calcButton.disabled = false;
+    }
+  </script>
+</body>
+</html>
