@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form name="inputForm">
+    <div>
+      퀵 정렬
+    </div>
+    <div>
+      <input name="str" type="text" size="50" />
+      <input type="button" value="정렬하기" onClick="doSort()"/>
+    </div>
+  </form>
+  <form name="outputForm">
+    <div>
+      정렬 결과
+    </div>
+    <div>
+      <textarea name="result" rows="20" cols="50"></textarea>
+    </div>
+  </form>
+  <script>
+    function doSort() {
+      var inputForm = document.forms.inputForm;
+      var outputForm = document.forms.outputForm;
+      var arr = inputForm.str.value.split(",");
+      arr = arr.map(function (e) { return Number(e); });
+      outputForm.result.value = arr.join(' ') + '\n';
+      outputForm.result.value = outputForm.result.value + "---" + '\n';
+      quickSort(arr);
+      outputForm.result.value = outputForm.result.value + "---" + '\n';
+      printArr(arr);
+      outputForm.result.value = outputForm.result.value + "done!" + '\n';
+    }
+
+    function quickSort(arr) {
+      function sort(start, end) {
+        if (start >= end) {
+            return;
+        }
+        var left = start;
+        var right = end;
+        var ref = arr[Math.round((left + right) / 2)];
+        while (left < right) {
+          if (arr[left] >= ref) {
+            while (right > left) {
+              if (arr[right] <= ref) {
+                var n = arr[left];
+                arr[left] = arr[right];
+                arr[right] = n;
+                right = right - 1;
+                break;
+              }
+              right = right - 1;
+            }
+              printArr(arr);
+            }
+            left = left + 1;
+          }
+          if (arr[right] > ref) {
+              sort(start, right - 1);
+              sort(right, end);
+          } else if (arr[right] < ref) {
+              sort(start, right);
+              sort(right + 1, end);
+          } else {
+              sort(start, right - 1);
+              sort(right + 1, end);
+          }
+      }
+      sort(0, arr.length - 1);
+    }
+
+    function printArr(arr) {
+      outputForm.result.value = outputForm.result.value + arr.join(' ') + '\n';
+    }
+  </script>
+</body>
+</html>
