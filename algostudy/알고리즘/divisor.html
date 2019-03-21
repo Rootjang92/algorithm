@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form name="inputForm">
+    <div>
+      a의 값 = <input type="text" name="a" size="10"><br>
+      b의 값 = <input type="text" name="b" size="10"><br>
+      자릿수 = <input type="text" name="d" size="10"><br>
+      <input type="button" value="계산하기" onClick="doDivide()">
+    </div>
+  </form>
+  <form name="outputForm">
+    <div>
+      계산 결과 : <input type="text" name="result" size="30">
+    </div>
+  </form>
+  <script>
+    // 소수점 자릿수까지 표현하기.
+    function doDivide() {
+      var inputForm = document.forms.inputForm;
+      var outputForm = document.forms.outputForm;
+      var a = parseInt(inputForm.a.value);
+      var b = parseInt(inputForm.b.value);
+      var d = parseInt(inputForm.d.value);
+      var result = divide(a, b, d);
+      console.log(result[0], result[1], result[2]);
+      if (result == null) {
+        outputForm.result.value = "0으로는 나눌 수 없습니다."
+      } else {
+        outputForm.result.value = a + "+" + b + "=" + result[0] + "." + (Array(result[2]).join('0') + result[1]).slice(-result[2]);
+      }
+    }
+
+    function divide(a, b, d) {
+      var q = 0;
+      var r = a;
+      if (b == 0) {
+        return null;
+      }
+      while (r >= b) {
+        r = r - b;
+        q = q + 1;
+      }
+      var f = 0;
+      var n = 0;
+      while (r > 0 && n < d) {
+        r = r * 10;
+        f = f * 10;
+        while (r >= b) {
+          r = r - b;
+          f = f + 1;
+        }
+        n = n + 1;
+      }
+      return [q,f,n]; // 몫 q, 나머지 r, 몫의 소수 부분 f, 소수 부분의 자릿수 n
+    }
+  </script>
+</body>
+</html>
