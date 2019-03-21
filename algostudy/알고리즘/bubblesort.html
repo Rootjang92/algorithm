@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form name="inputForm">
+    <div>
+      버블 정렬
+    </div>
+    <div>
+      <input name="str" type="text" size="50" />
+      <input type="button" value="정렬하기" onClick="doSort()"/>
+    </div>
+  </form>
+  <form name="outputForm">
+    <div>
+      정렬 결과
+    </div>
+    <div>
+      <textarea name="result" rows="20" cols="50"></textarea>
+    </div>
+  </form>
+  <script>
+    function doSort() {
+      var inputForm = document.forms.inputForm;
+      var outputForm = document.forms.outputForm;
+      var arr = inputForm.str.value.split(",");
+      arr = arr.map(function(e) {
+        return Number(e);
+      });
+      console.log(arr);
+      outputForm.result.value = arr.join(' ') + '\n';
+      outputForm.result.value = outputForm.result.value + "---" + '\n';
+      bubbleSort(arr);
+      outputForm.result.value = outputForm.result.value + "---" + '\n';
+      printArr(arr);
+      outputForm.result.value = outputForm.result.value + "---" + '\n';
+    }
+
+    function bubbleSort(arr) {
+      var i = 0;
+      while ( i < arr.length - 1) {
+        var j = 0;
+        while ( j < arr.length - i - 1) {
+          if (arr[j] > arr[j + 1]) {
+            var n = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = n;
+          }
+          j = j + 1;
+          printArr(arr);
+        }
+        i = i + 1;
+      }
+    }
+
+    function printArr(arr) {
+      outputForm.result.value = outputForm.result.value + arr.join(' ') + '\n';
+    }
+  </script>
+</body>
+</html>
