@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form name="inputForm">
+    <div>
+      선택 정렬
+    </div>
+    <div>
+      <input name="str" type="text" size="50" />
+      <input type="button" value="정렬하기" onClick="doSort()"/>
+    </div>
+  </form>
+  <form name="outputForm">
+    <div>
+      정렬 결과
+    </div>
+    <div>
+      <textarea name="result" rows="20" cols="50"></textarea>
+    </div>
+  </form>
+  <script>
+    function doSort() {
+      var inputForm = document.forms.inputForm;
+      var outputFrom = document.forms.outputForm;
+      var arr = inputForm.str.value.split(",");
+      arr = arr.map(function (e) { return Number(e); });
+      outputForm.result.value = arr.join(' ') + '\n';
+      outputForm.result.value = outputForm.result.value + "---" + '\n';
+      selectionSort(arr);
+      outputForm.result.value = outputForm.result.value + "---" + '\n';
+      printArr(arr);
+      outputForm.result.value = outputForm.result.value + "done!" + '\n';
+    }
+
+    function selectionSort(arr) {
+      var i = 0;
+      var min;
+
+      while ( i < arr.length ) {
+        min = i;
+        var j = i + 1;
+        while ( j < arr.length ) {
+          if (arr[min] > arr[j]) {
+            min = j;
+          }
+          j = j + 1;
+          printArr(arr);
+        }
+        var n = arr[i];
+        arr[i] = arr[min];
+        arr[min] = n;
+        i = i + 1;
+      }
+    }
+
+    function printArr(arr) {
+      outputForm.result.value = outputForm.result.value + arr.join(' ') + '\n';
+    }
+  </script>
+</body>
+</html>
